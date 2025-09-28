@@ -28,7 +28,7 @@ var delete_producer_query = `
 /*-------------MOVIE QUERIES---------*/
 var get_movies_query = `
 	SELECT movies.id, movies.name, genre, length, year, synopsis,
-	price, manifest, producer, producers.name AS producer_name,
+	price, producer, producers.name AS producer_name,
 	thumbnail, movies.created_on
 	FROM movies
 	INNER JOIN producers ON producers.id = movies.producer
@@ -40,13 +40,13 @@ var count_movies_query = `
 var insert_movie_query = `
 	INSERT INTO movies(
 		name, genre, length, year, synopsis, price,
-		manifest, producer, thumbnail
+		producer, thumbnail
 	) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
 `
 var update_movie_query = `
 	UPDATE movies SET name = ?, genre = ?, length = ?,
 	year = ?, synopsis = ?, price = ?,
-	manifest = ?, producer = ?, thumbnail = ?
+	producer = ?, thumbnail = ?
 	WHERE id = ?
 `
 var delete_movie_query = `
@@ -61,19 +61,13 @@ var get_actors_query = `
 	SELECT id, name, image
 	FROM actors WHERE is_deleted = 0
 `
-var count_actors_query = `
-	SELECT COUNT(id) FROM actors WHERE is_deleted = 0
-`
-var insert_actor_query = `
-	INSERT INTO actors(name, image) VALUES(?, ?)
-`
+var count_actors_query = `SELECT COUNT(id) FROM actors WHERE is_deleted = 0`
+var insert_actor_query = `INSERT INTO actors(name, image) VALUES(?, ?)`
 var update_actor_query = `
 	UPDATE actors SET name = ?, image = ?
 	WHERE id = ?
 `
-var delete_actor_query = `
-	UPDATE actors SET is_deleted = 1 WHERE id = ?
-`
+var delete_actor_query = `UPDATE actors SET is_deleted = 1 WHERE id = ?`
 
 /*-------------CUSTOMER QUERIES---------*/
 var get_customers_query = `

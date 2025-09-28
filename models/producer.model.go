@@ -14,7 +14,7 @@ func (producer Producer) Get(offset, limit int, params map[string]string) (Count
 	var fields = get_producer_fields(&producer)
 	var query string = get_producers_query
 	filter_query, filter := producer.QueryBuilder(params)
-	query += filter_query
+	query += filter_query + order_filter
 	return GetListData(filter, fields, &producer, "", query, offset, limit)
 }
 
@@ -32,6 +32,7 @@ func (producer *Producer) Add() bool {
 
 func (producer *Producer) Update(id string) bool {
 	var fields = get_producer_add_fields(producer)
+	fields = append(fields, id)
 	return utils.RunUpdate(update_producer_query, fields)
 }
 

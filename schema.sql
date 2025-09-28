@@ -15,7 +15,6 @@ CREATE TABLE movies (
 	year INT(4),
 	synopsis VARCHAR(1000),
 	price INT(4),
-	manifest VARCHAR(500),
 	producer INT,
 	thumbnail VARCHAR(500),
 	created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
